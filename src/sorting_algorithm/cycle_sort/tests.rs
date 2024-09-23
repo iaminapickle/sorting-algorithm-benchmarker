@@ -2,11 +2,17 @@ use paste::paste;
 use std::time::Duration;
 
 use crate::sorting_tests;
-use crate::{StableGeneralCycleSort,   StableRangedCycleSort,   StableWikiCycleSort, 
-            UnstableGeneralCycleSort, UnstableRangedCycleSort, UnstableWikiCycleSort, 
-            SpecialCycleSort, SortingAlgorithm, SortElem, to_sort_elem_vec};
 use crate::helper::{is_stable_sorted, is_unstable_sorted};
-use crate::sorting_algorithm::run_sort_in_thread;
+use crate::sort_elem::{to_sort_elem_vec, SortElem};
+
+use crate::sorting_algorithm::{run_sort_in_thread, SortingAlgorithm};
+use crate::sorting_algorithm::cycle_sort::stable_general_cycle_sort::StableGeneralCycleSort;
+use crate::sorting_algorithm::cycle_sort::stable_ranged_cycle_sort::StableRangedCycleSort;
+use crate::sorting_algorithm::cycle_sort::stable_wiki_cycle_sort::StableWikiCycleSort;
+use crate::sorting_algorithm::cycle_sort::unstable_general_cycle_sort::UnstableGeneralCycleSort;
+use crate::sorting_algorithm::cycle_sort::unstable_ranged_cycle_sort::UnstableRangedCycleSort;
+use crate::sorting_algorithm::cycle_sort::unstable_wiki_cycle_sort::UnstableWikiCycleSort;
+use crate::sorting_algorithm::cycle_sort::special_cycle_sort::SpecialCycleSort;
 
 sorting_tests! {
     stable_general_cycle_sort: StableGeneralCycleSort::default(),

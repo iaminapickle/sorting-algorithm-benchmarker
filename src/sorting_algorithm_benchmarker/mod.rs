@@ -145,7 +145,7 @@ impl SortingAlgorithmBenchmarker where
                             }
                             // Incorrect sort
                             else {
-                                println!("{} {}: {:?}", formatted_algo_name, "FAILED".red(), vec_clone);
+                                println!("{} {}:\nInput:  {:?}\nOutput: {:?}", formatted_algo_name, "FAILED".red(), vec, vec_clone);
                             }
                         }
 
