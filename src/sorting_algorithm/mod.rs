@@ -4,6 +4,7 @@ pub mod cycle_sort;
 pub mod bubble_sort;
 pub mod merge_sort;
 pub mod rust_sort;
+pub mod quick_sort;
 
 #[cfg(test)]
 pub mod tests;

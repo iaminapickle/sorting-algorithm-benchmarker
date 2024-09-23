@@ -37,6 +37,8 @@ use crate::sorting_algorithm::insertion_sort::binary_insertion_sort::BinaryInser
 
 use crate::sorting_algorithm::merge_sort::merge_sort::MergeSort;
 
+use crate::sorting_algorithm::quick_sort::quick_sort::QuickSort;
+
 use crate::sorting_algorithm_benchmarker::sorting_algorithm_benchmarker::{SortingAlgorithmBenchmarker, DurationOptions};
 
 fn main() {
@@ -72,6 +74,8 @@ fn main() {
 
     let merge_sort = MergeSort::default();
 
+    let quick_sort = QuickSort::default();
+
     let generator = GeneralVecGenerator {
         lower_bound: 0,
         upper_bound: 1000,
@@ -88,6 +92,7 @@ fn main() {
         Box::new(unstable_ranged_cycle_sort),  Box::new(stable_ranged_cycle_sort),
         Box::new(unstable_wiki_cycle_sort), Box::new(stable_wiki_cycle_sort),
         Box::new(merge_sort),
+        Box::new(quick_sort),
     ];
     
     let range = vec![1000, 10000];
