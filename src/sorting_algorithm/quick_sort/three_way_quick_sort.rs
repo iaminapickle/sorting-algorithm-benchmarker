@@ -1,11 +1,11 @@
 use std::fmt::Debug;
 use crate::sorting_algorithm::SortingAlgorithm;
 
-pub struct QuickSort {}
+pub struct ThreeWayQuickSort {}
 
-impl Default for QuickSort {
-    fn default() -> QuickSort {
-        return QuickSort {};
+impl Default for ThreeWayQuickSort {
+    fn default() -> ThreeWayQuickSort {
+        return ThreeWayQuickSort {};
     }
 }
 
@@ -23,47 +23,45 @@ fn choose_pivot<T:Ord + Copy + Debug>(vec: &mut [T]) -> usize {
     }
 }
 
-// Using Hoare's Partitioning algorithm, partition the vec into [< pivot][> pivot]
-// Returns the last index of the [< pivot] partition
-fn partition<T:Ord + Copy + Debug>(vec: &mut [T]) -> usize {
+// Partition the vec into [< pivot][= pivot][> pivot]
+// Returns the first and last index of the [= pivot] partition
+fn partition<T:Ord + Copy + Debug>(vec: &mut [T]) -> (usize, usize) {
     // Choose median of three as pivot
     let pivot_idx = choose_pivot(vec);
     let pivot =  vec[pivot_idx];
     vec.swap(0, pivot_idx);
  
-    let mut l: isize = -1;
-    let mut r = vec.len();
+    let mut l = 0;
+    let mut r = vec.len() - 1;
 
-    loop {
-        // Increment left index until an element is greater than or equal to the pivot
-        while {
+    let mut i = 0;
+    while i <= r {
+        // If element is less than pivot, swap with l
+        if vec[i] < pivot {
+            vec.swap(l, i);
             l += 1;
-            
-            vec[l as usize] < pivot
-        } {}
-        
-        // Increment right index until an element is less than or equal to the pivot
-        while {
+        } 
+        // If element is larger than pivot, swap with r
+        else if vec[i] > pivot {
+            vec.swap(i, r);
             r -= 1;
 
-            vec[r] > pivot
-        } {}
-
-        if l as usize >= r {
-            return r;
+            // Decrement i to process swapped element
+            i -= 1;
         }
-
-        vec.swap(l as usize, r); 
+        i += 1;
     }
+    
+    return (l, r);
 }
 
-impl<T:Ord + Copy + Debug> SortingAlgorithm<T> for QuickSort {
+impl<T:Ord + Copy + Debug> SortingAlgorithm<T> for ThreeWayQuickSort {
     fn sort(&self, vec: &mut [T]) {
         if vec.len() <= 1 { return; }
 
-        let p = partition(vec);
-        self.sort(&mut vec[0..p + 1]);
-        self.sort(&mut vec[p + 1..]);
+        let (l, r) = partition(vec);
+        self.sort(&mut vec[0..l]);
+        self.sort(&mut vec[r + 1..]);
     }
 
     fn name(&self) -> String {
