@@ -22,13 +22,12 @@ impl<T: Ord + Copy + Debug> SortingAlgorithm<T> for UnstableGeneralCycleSort {
         let mut cumulative_count_map = generate_cumulative_count_map(&count_map);
 
         for idx in 0..vec.len() {
-            let cycle_start = vec[idx];
             // The correct index of the current element
             let mut correct_idx = cumulative_count_map.get_mut(&vec[idx]).unwrap();
             
             // If the current element is in the wrong spot, rotate an entire cycle once
             if idx >= *correct_idx {
-                let mut cur_elem = cycle_start;
+                let mut cur_elem = vec[idx];
                 loop {
                     // Increment the correct index for a potential next element
                     correct_idx = cumulative_count_map.get_mut(&cur_elem).unwrap();
@@ -37,7 +36,7 @@ impl<T: Ord + Copy + Debug> SortingAlgorithm<T> for UnstableGeneralCycleSort {
                     
                     *correct_idx += 1;
                     // Exit condition: we've rotated around the entire cycle once
-                    if cur_elem == cycle_start {
+                    if *correct_idx - 1 == idx {
                         break;
                     }
                 }

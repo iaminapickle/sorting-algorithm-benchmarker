@@ -38,6 +38,7 @@ use crate::sorting_algorithm::insertion_sort::binary_insertion_sort::BinaryInser
 use crate::sorting_algorithm::merge_sort::merge_sort::MergeSort;
 
 use crate::sorting_algorithm::quick_sort::quick_sort::QuickSort;
+use crate::sorting_algorithm::quick_sort::three_way_quick_sort::ThreeWayQuickSort;
 
 use crate::sorting_algorithm_benchmarker::sorting_algorithm_benchmarker::{SortingAlgorithmBenchmarker, DurationOptions};
 
@@ -75,6 +76,7 @@ fn main() {
     let merge_sort = MergeSort::default();
 
     let quick_sort = QuickSort::default();
+    let three_way_quick_sort = ThreeWayQuickSort::default();
 
     let generator = GeneralVecGenerator {
         lower_bound: 0,
@@ -88,17 +90,17 @@ fn main() {
         Box::new(unstable_bidirectional_selection_sort), Box::new(stable_bidirectional_selection_sort),
         Box::new(unstable_grouped_selection_sort), Box::new(stable_grouped_selection_sort),
         Box::new(insertion_sort), Box::new(binary_insertion_sort), 
-        Box::new(unstable_general_cycle_sort) , Box::new(stable_general_cycle_sort),
+        Box::new(unstable_general_cycle_sort), Box::new(stable_general_cycle_sort),
         Box::new(unstable_ranged_cycle_sort),  Box::new(stable_ranged_cycle_sort),
         Box::new(unstable_wiki_cycle_sort), Box::new(stable_wiki_cycle_sort),
         Box::new(merge_sort),
-        Box::new(quick_sort),
+        Box::new(quick_sort), Box::new(three_way_quick_sort),
     ];
     
-    let range = vec![1000, 10000];
+    let range = vec![999, 1000, 9999, 10000];
 
     let benchmarker = SortingAlgorithmBenchmarker {
-        no_benchmarks: 5,
+        no_benchmarks: 3,
         use_nicknames: false,
         print_incorrect_vectors: true,
         stop_on_fail: false,
