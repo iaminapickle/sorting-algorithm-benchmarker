@@ -65,11 +65,11 @@ impl<T:Ord + Copy + Debug> SortingAlgorithm<T> for ThreeWayQuickSort {
     }
 
     fn name(&self) -> String {
-        return String::from("Quick Sort");
+        return String::from("Three Way Quick Sort");
     }
 
     fn nickname(&self) -> String {
-        return String::from("Q");
+        return String::from("TWQ");
     }
 
     fn is_stable(&self) -> bool {
