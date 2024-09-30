@@ -38,7 +38,8 @@ use crate::sorting_algorithm::insertion_sort::binary_insertion_sort::BinaryInser
 use crate::sorting_algorithm::merge_sort::merge_sort::MergeSort;
 
 use crate::sorting_algorithm::quick_sort::quick_sort::QuickSort;
-use crate::sorting_algorithm::quick_sort::three_way_quick_sort::ThreeWayQuickSort;
+use crate::sorting_algorithm::quick_sort::unstable_three_way_quick_sort::UnstableThreeWayQuickSort;
+use crate::sorting_algorithm::quick_sort::stable_three_way_quick_sort::StableThreeWayQuickSort;
 
 use crate::sorting_algorithm_benchmarker::sorting_algorithm_benchmarker::{SortingAlgorithmBenchmarker, DurationOptions};
 
@@ -76,7 +77,8 @@ fn main() {
     let merge_sort = MergeSort::default();
 
     let quick_sort = QuickSort::default();
-    let three_way_quick_sort = ThreeWayQuickSort::default();
+    let unstable_three_way_quick_sort = UnstableThreeWayQuickSort::default();
+    let stable_three_way_quick_sort = StableThreeWayQuickSort::default();
 
     let generator = GeneralVecGenerator {
         lower_bound: 0,
@@ -94,7 +96,8 @@ fn main() {
         Box::new(unstable_ranged_cycle_sort),  Box::new(stable_ranged_cycle_sort),
         Box::new(unstable_wiki_cycle_sort), Box::new(stable_wiki_cycle_sort),
         Box::new(merge_sort),
-        Box::new(quick_sort), Box::new(three_way_quick_sort),
+        Box::new(quick_sort),
+        Box::new(unstable_three_way_quick_sort), Box::new(stable_three_way_quick_sort),
     ];
     
     let range = vec![999, 1000, 9999, 10000];

@@ -23,8 +23,8 @@ fn choose_pivot<T:Ord + Copy + Debug>(vec: &mut [T]) -> usize {
     }
 }
 
-// Using Hoare's Partitioning algorithm, partition the vec into [< pivot][> pivot]
-// Returns the last index of the [< pivot] partition
+// Using Hoare's Partitioning algorithm, partition the vec into [<= pivot][>= pivot]
+// Returns the last index of the [<= pivot] partition
 fn partition<T:Ord + Copy + Debug>(vec: &mut [T]) -> usize {
     // Choose median of three as pivot
     let pivot_idx = choose_pivot(vec);

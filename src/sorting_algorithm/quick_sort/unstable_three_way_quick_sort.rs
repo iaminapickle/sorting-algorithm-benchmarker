@@ -1,11 +1,11 @@
 use std::fmt::Debug;
 use crate::sorting_algorithm::SortingAlgorithm;
 
-pub struct ThreeWayQuickSort {}
+pub struct UnstableThreeWayQuickSort {}
 
-impl Default for ThreeWayQuickSort {
-    fn default() -> ThreeWayQuickSort {
-        return ThreeWayQuickSort {};
+impl Default for UnstableThreeWayQuickSort {
+    fn default() -> UnstableThreeWayQuickSort {
+        return UnstableThreeWayQuickSort {};
     }
 }
 
@@ -55,7 +55,7 @@ fn partition<T:Ord + Copy + Debug>(vec: &mut [T]) -> (usize, usize) {
     return (l, r);
 }
 
-impl<T:Ord + Copy + Debug> SortingAlgorithm<T> for ThreeWayQuickSort {
+impl<T:Ord + Copy + Debug> SortingAlgorithm<T> for UnstableThreeWayQuickSort {
     fn sort(&self, vec: &mut [T]) {
         if vec.len() <= 1 { return; }
 
@@ -65,11 +65,11 @@ impl<T:Ord + Copy + Debug> SortingAlgorithm<T> for ThreeWayQuickSort {
     }
 
     fn name(&self) -> String {
-        return String::from("Three Way Quick Sort");
+        return String::from("Unstable Three Way Quick Sort");
     }
 
     fn nickname(&self) -> String {
-        return String::from("TWQ");
+        return String::from("UTWQ");
     }
 
     fn is_stable(&self) -> bool {
